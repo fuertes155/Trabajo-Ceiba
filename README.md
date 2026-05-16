@@ -2,6 +2,9 @@
 
 Este es mi proyecto para la prueba técnica de Ceiba Software. Desarrollé esta API REST usando **Spring Boot 3.5** para resolver el problema de gestión de alquileres de bicicletas que me plantearon en el enunciado.
 
+🟢 **¡El proyecto está desplegado en vivo!** Puedes probar la API directamente desde tu navegador usando Swagger UI aquí:
+👉 **[https://trabajo-ceiba.onrender.com/swagger-ui.html](https://trabajo-ceiba.onrender.com/swagger-ui.html)**
+
 El sistema permite registrar bicicletas, iniciar y finalizar alquileres, y lo más importante: **calcula automáticamente los costos base y las multas** siguiendo estrictamente las reglas de negocio, con un sistema de redondeo de horas.
 
 ---
