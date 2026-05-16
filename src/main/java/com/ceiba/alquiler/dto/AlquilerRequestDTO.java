@@ -5,7 +5,8 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
 /**
- * DTO para la solicitud de inicio de un alquiler.
+ * Este es el JSON que me envían cuando alguien quiere iniciar un alquiler.
+ * Le puse anotaciones de validación para asegurar que no manden datos vacíos.
  */
 public class AlquilerRequestDTO {
 

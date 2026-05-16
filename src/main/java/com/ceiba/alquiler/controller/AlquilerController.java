@@ -12,8 +12,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 /**
- * Controlador REST para la gestión de alquileres.
- * Expone endpoints para iniciar y finalizar alquileres de bicicletas.
+ * Este es el Controlador de Alquileres.
+ * Su única función es recibir las peticiones de iniciar o finalizar
+ * un alquiler y pasárselas al Servicio para que haga el trabajo pesado.
  */
 @RestController
 @RequestMapping("/api/alquileres")
@@ -27,7 +28,9 @@ public class AlquilerController {
     }
 
     /**
-     * Inicia un nuevo alquiler de bicicleta (RF-02).
+     * Endpoint para iniciar un nuevo alquiler.
+     * Recibo un JSON, uso @Valid para revisarlo y luego
+     * devuelvo un 201 Created si todo sale bien.
      */
     @PostMapping
     @Operation(summary = "Iniciar un alquiler",
@@ -39,7 +42,9 @@ public class AlquilerController {
     }
 
     /**
-     * Finaliza un alquiler activo (RF-03).
+     * Endpoint para finalizar un alquiler existente.
+     * Usé PUT porque estoy actualizando el estado de un registro
+     * que ya existe en la base de datos.
      */
     @PutMapping("/{id}/finalizar")
     @Operation(summary = "Finalizar un alquiler",

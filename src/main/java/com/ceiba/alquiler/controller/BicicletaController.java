@@ -17,8 +17,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
- * Controlador REST para la gestión de bicicletas.
- * Expone endpoints para registrar bicicletas, consultar disponibilidad e historial.
+ * Este es el Controlador para las Bicicletas.
+ * Aquí expongo las URLs (endpoints) para que el frontend o Postman
+ * puedan comunicarse con el sistema.
  */
 @RestController
 @RequestMapping("/api/bicicletas")
@@ -34,7 +35,9 @@ public class BicicletaController {
     }
 
     /**
-     * Registra una nueva bicicleta en el sistema (RF-01).
+     * Endpoint para guardar una bicicleta nueva en la base de datos.
+     * Usé @Valid para asegurarme de que el JSON que envían cumpla con las reglas
+     * del DTO.
      */
     @PostMapping
     @Operation(summary = "Registrar una bicicleta", description = "Registra una nueva bicicleta con código único, tipo y estado")
@@ -45,27 +48,26 @@ public class BicicletaController {
     }
 
     /**
-     * Consulta las bicicletas disponibles con filtro opcional por tipo (RF-04).
+     * Endpoint para ver el catálogo de bicicletas disponibles.
+     * Le puse un @RequestParam opcional por si el usuario quiere filtrar solo las
+     * de Montaña, etc.
      */
     @GetMapping("/disponibles")
-    @Operation(summary = "Consultar bicicletas disponibles",
-            description = "Lista las bicicletas en estado DISPONIBLE, con filtro opcional por tipo")
+    @Operation(summary = "Consultar bicicletas disponibles", description = "Lista las bicicletas en estado DISPONIBLE, con filtro opcional por tipo")
     public ResponseEntity<List<BicicletaResponseDTO>> consultarDisponibles(
-            @Parameter(description = "Tipo de bicicleta para filtrar (URBANA, MONTANA, ELECTRICA)")
-            @RequestParam(required = false) TipoBicicleta tipo) {
+            @Parameter(description = "Tipo de bicicleta para filtrar (URBANA, MONTANA, ELECTRICA)") @RequestParam(required = false) TipoBicicleta tipo) {
         List<BicicletaResponseDTO> disponibles = bicicletaService.consultarDisponibles(tipo);
         return ResponseEntity.ok(disponibles);
     }
 
     /**
-     * Consulta el historial de alquileres de una bicicleta por su código (RF-05).
+     * Endpoint para ver todo el historial de una bicicleta específica.
+     * Recibo el código por la URL (ej: /api/bicicletas/BIC-001/historial).
      */
     @GetMapping("/{codigo}/historial")
-    @Operation(summary = "Historial de alquileres",
-            description = "Consulta todos los alquileres de una bicicleta, mostrando cliente, tiempos, costos y multas")
+    @Operation(summary = "Historial de alquileres", description = "Consulta todos los alquileres de una bicicleta, mostrando cliente, tiempos, costos y multas")
     public ResponseEntity<List<AlquilerResponseDTO>> consultarHistorial(
-            @Parameter(description = "Código de la bicicleta (ej: BIC-001)")
-            @PathVariable String codigo) {
+            @Parameter(description = "Código de la bicicleta (ej: BIC-001)") @PathVariable String codigo) {
         List<AlquilerResponseDTO> historial = alquilerService.consultarHistorial(codigo);
         return ResponseEntity.ok(historial);
     }

@@ -11,8 +11,8 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 /**
- * Componente que carga datos iniciales de bicicletas al arrancar la aplicación.
- * Solo se ejecuta cuando NO está activo el perfil "test" para no interferir con las pruebas.
+ * Creé esta clase para que la base de datos no empiece vacía.
+ * Al arrancar, inserta las 5 bicicletas de prueba que pedía el enunciado.
  */
 @Component
 @Profile("!test")

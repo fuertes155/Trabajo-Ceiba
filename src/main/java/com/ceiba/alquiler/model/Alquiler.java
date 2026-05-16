@@ -5,9 +5,9 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 /**
- * Entidad que representa un alquiler de bicicleta.
- * Almacena toda la información del ciclo de vida del alquiler:
- * desde el inicio hasta la finalización con cálculo de costos.
+ * Esta es la tabla principal de la base de datos para los alquileres.
+ * Aquí guardo absolutamente todo: cuándo empezó, cuándo terminó,
+ * cuánto se cobró y si hubo multa. Usé BigDecimal para el dinero por precisión.
  */
 @Entity
 @Table(name = "alquileres")

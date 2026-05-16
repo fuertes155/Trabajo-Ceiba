@@ -14,8 +14,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * Servicio que encapsula la lógica de negocio para la gestión de bicicletas.
- * Maneja el registro de bicicletas y las consultas de disponibilidad.
+ * Servicio para gestionar todo lo relacionado con las bicicletas.
+ * Lo mantuve simple: solo registro y consultas.
  */
 @Service
 @Transactional
@@ -28,11 +28,8 @@ public class BicicletaService {
     }
 
     /**
-     * Registra una nueva bicicleta en el sistema (RF-01).
-     *
-     * @param request DTO con los datos de la bicicleta
-     * @return DTO con la bicicleta registrada
-     * @throws IllegalArgumentException si ya existe una bicicleta con ese código
+     * Guardo la bicicleta nueva, pero primero verifico que
+     * no me intenten meter un código repetido.
      */
     public BicicletaResponseDTO registrarBicicleta(BicicletaRequestDTO request) {
         if (bicicletaRepository.existsByCodigo(request.getCodigo())) {
@@ -52,10 +49,8 @@ public class BicicletaService {
     }
 
     /**
-     * Consulta las bicicletas disponibles, con filtro opcional por tipo (RF-04).
-     *
-     * @param tipo filtro opcional por tipo de bicicleta
-     * @return lista de bicicletas disponibles
+     * Busco las bicicletas disponibles. Si me pasan un tipo (ej. URBANA),
+     * filtro por ese tipo. Si no, las devuelvo todas.
      */
     @Transactional(readOnly = true)
     public List<BicicletaResponseDTO> consultarDisponibles(TipoBicicleta tipo) {
@@ -73,11 +68,7 @@ public class BicicletaService {
     }
 
     /**
-     * Busca una bicicleta por su código.
-     *
-     * @param codigo código de la bicicleta
-     * @return la entidad Bicicleta encontrada
-     * @throws BicicletaNoEncontradaException si no existe
+     * Función utilitaria para buscar una bici. Lanza un error 404 si no existe.
      */
     @Transactional(readOnly = true)
     public Bicicleta buscarPorCodigo(String codigo) {

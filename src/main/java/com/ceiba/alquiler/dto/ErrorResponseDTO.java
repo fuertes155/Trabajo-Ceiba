@@ -5,8 +5,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import java.time.LocalDateTime;
 
 /**
- * DTO estándar para respuestas de error de la API.
- * Proporciona un formato consistente para todos los errores.
+ * Creé esta clase para que todos los errores que devuelva
+ * la API tengan exactamente el mismo formato y se vean organizados.
  */
 public class ErrorResponseDTO {
 

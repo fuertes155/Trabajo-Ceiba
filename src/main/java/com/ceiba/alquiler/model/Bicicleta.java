@@ -5,8 +5,8 @@ import com.ceiba.alquiler.model.enums.TipoBicicleta;
 import jakarta.persistence.*;
 
 /**
- * Entidad que representa una bicicleta en el sistema de alquiler.
- * Cada bicicleta tiene un código único, un tipo y un estado actual.
+ * Esta es la entidad para la tabla de Bicicletas.
+ * Aquí guardo el código único, de qué tipo es y en qué estado está.
  */
 @Entity
 @Table(name = "bicicletas")
