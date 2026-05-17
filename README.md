@@ -99,5 +99,6 @@ Durante el desarrollo tomé un par de decisiones que quiero aclarar:
 1. **Sin tildes ni "ñ" en el código:** Usé `ELECTRICA` y `MONTANA` en los `enum` de Java para evitar cualquier problema de compilación con caracteres especiales en distintos sistemas operativos.
 2. **Validaciones estrictas:** Le puse validaciones con Regex al código de la bicicleta (tiene que ser formato `BIC-XXX`) y me aseguré de que no se pueda alquilar una bicicleta si su estado no es exactamente `DISPONIBLE`.
 3. **Tiempo automático:** En el endpoint de "Iniciar alquiler", no pido que me envíen la fecha de inicio en el JSON. El sistema la toma automáticamente del reloj del servidor en ese instante para evitar fraudes.
+4. **Persistencia (Base de Datos):** Aunque el proyecto simula una aplicación real empresarial (usando Spring Data JPA y la estructura completa de Repositories), tomé la decisión arquitectónica de usar **H2** (en memoria) en lugar de un motor pesado como PostgreSQL. Hice esto intencionalmente para garantizar que ustedes como evaluadores puedan clonar el repositorio, ejecutar el proyecto y probarlo de inmediato (cero configuraciones e instalaciones extra).
 
 ¡Espero que el código sea de su agrado y quedo atento a cualquier feedback técnico!
